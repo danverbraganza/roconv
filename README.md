@@ -1,5 +1,5 @@
 Roman Numerals Conversion Library in Go
----------------------------------------
+=======================================
 
 Author: Danver Braganza
 
@@ -26,7 +26,7 @@ Command line use
 
 Then:
 
-    > roconv -h
+    > ./roconv -h
     roconv is a commandline utility to convert between roman and arabic numerals.
 	   Input is either read from args if present, or failing that from the standard input.
     Usage:
@@ -37,13 +37,13 @@ Then:
 
 Suddenly:
 
-    ! roconv 3 4 6 1999
+    ! ./roconv 3 4 6 1999
     III
     IV
     VI
     MCMXCIX
 
-    ! roconv -mode=I
+    ! ./roconv -mode=I
     ! MCMXCIX
     1999
     ! L̅
