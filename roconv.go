@@ -56,13 +56,7 @@ func main() {
 		s := scanner.Scanner{}
 		s.Init(os.Stdin)
 		for s.Scan() != scanner.EOF {
-			arg, err := function(s.TokenText())
-			if err != nil {
-				fmt.Fprintf(os.Stderr, "Encountered error converting %s. Error was %s.",
-					arg, err)
-				os.Exit(65) // EX_DATAERR
-			}
-			processOne(arg)
+			processOne(s.TokenText())
 		}
 	}
 }

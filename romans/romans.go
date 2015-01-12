@@ -42,13 +42,12 @@ var Symbols = []string{
 	OVERLINE + "C",
 	OVERLINE + "D",
 	OVERLINE + "M",
-	"", // 2 string padding for slicing until M̅,
+	"", // 2 string padding for slicing until ̅M̅
 	"",
 }
 
-/**
-
-*/
+// GetSymbols returns the 3 symbols that could possibly be used to represent a
+// number
 func GetSymbols(i int) []string {
 	return Symbols[i * 2: i * 2 + 3]
 }
@@ -99,7 +98,7 @@ func FromArabic(n uint32) (string, error) {
 	return reverseByRune(reversed), nil
 }
 
-
+// Reverse a string by runes, not bytes.
 func reverseByRune(s string) string {
 	temp := []rune(s)
 	for i, j := 0, len(temp)-1; i < j; i, j = i+1, j-1 {
