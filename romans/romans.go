@@ -69,6 +69,7 @@ func FromArabic(n uint32) (string, error) {
 			for j := uint32(0); j < n / pos; j++ {
 				// Write 10 for every one.
 				for k := 0; k < 10; k++ {
+					// Tally ho!
 					reversedOutput.WriteString(syms[I])
 				}
 			}
