@@ -11,7 +11,7 @@ As long as the strings passed to the functions are in utf-8, this
 library is able to parse Roman Numerals containing characters with
 overbars, such as
 
-    ̅V, ̅L, ̅C and ̅M
+   V̅, L̅, C̅ and M̅
 
 If you cannot accept these characters in your output, you may not call
 the FromArabic functions with values greater than or equal to 4000
@@ -26,7 +26,7 @@ Command line use
 
 Then:
 
-    > ./roconv -h
+    ! ./roconv -h
     roconv is a commandline utility to convert between roman and arabic numerals.
 	   Input is either read from args if present, or failing that from the standard input.
     Usage:
@@ -46,7 +46,7 @@ Suddenly:
     ! ./roconv -mode=I
     ! MCMXCIX
     1999
-    ! ̅L
+    ! L̅
     50000
 
 Testing

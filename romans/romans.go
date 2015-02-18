@@ -42,7 +42,7 @@ var Symbols = []string{
 	OVERLINE + "C",
 	OVERLINE + "D",
 	OVERLINE + "M",
-	"", // 2 string padding for slicing until ̅M̅
+	"", // 2 string padding for slicing until M̅
 	"",
 }
 
