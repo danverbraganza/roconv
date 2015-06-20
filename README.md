@@ -57,8 +57,6 @@ To run tests, run
     ! test/test.sh
     If you see no output from diff, all the tests passed.
 
-Yeah, the testing is a bit minimal, but it's all I need. Unless I need
-to update these functions a lot more, I am probably not going to
-overhaul the testing.
+You can also run the tests in go with
 
-
+    ! go test github.com/danverbraganza/go-roconv/romans
