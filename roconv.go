@@ -41,7 +41,7 @@ func main() {
 	var processOne = func(arg string) {
 		result, err := function(arg)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "Encountered error converting %s. Error was %s.",
+			fmt.Fprintf(os.Stderr, "Encountered error converting %v. Error was %v.",
 				arg, err)
 			os.Exit(65) // EX_DATAERR
 		}

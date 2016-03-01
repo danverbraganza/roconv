@@ -18,13 +18,15 @@ var Values = map[byte]uint32{
 	'M': 1000,
 }
 
+// These constants are the building blocks for the main algorithm, and are used
+// as indexes into Symbols.
 const (
 	I = iota
 	V
 	X
 )
 
-// Overline are the combining characters for the overline.
+// OVERLINE are the combining characters for the overline.
 var OVERLINE = "\xCC\x85"
 
 // Symbols maps each position with the symbols it may have.
@@ -36,9 +38,9 @@ var Symbols = []string{
 	"C",
 	"D",
 	"M",
-	OVERLINE + "V",  // Combining character overline
-	OVERLINE + "X",  // is reversed because we reverse all the
-	OVERLINE + "L",  // symbols later.
+	OVERLINE + "V", // Combining character overline
+	OVERLINE + "X", // is reversed because we reverse all the
+	OVERLINE + "L", // symbols later.
 	OVERLINE + "C",
 	OVERLINE + "D",
 	OVERLINE + "M",
@@ -49,9 +51,8 @@ var Symbols = []string{
 // GetSymbols returns the 3 symbols that could possibly be used to represent a
 // number
 func GetSymbols(i int) []string {
-	return Symbols[i * 2: i * 2 + 3]
+	return Symbols[i*2 : i*2+3]
 }
-
 
 // FromArabic converts an arabic integer into a roman numeral string.
 // All conversions are digitwise.
@@ -59,13 +60,13 @@ func FromArabic(n uint32) (string, error) {
 	var reversedOutput bytes.Buffer
 
 	// Perform conversion by taking every digit, and mapping it.
-	for i, pos, nPos := 0, uint32(1), uint32(10); pos <= n; i, pos, nPos = i+ 1, nPos, 10 * nPos {
+	for i, pos, nPos := 0, uint32(1), uint32(10); pos <= n; i, pos, nPos = i+1, nPos, 10*nPos {
 		digit := (n % nPos) / pos
 		n -= n % pos
 
 		if i > 6 { // No more characters available.
 			syms := GetSymbols(i - 1) // Go back to the previous level
-			for j := uint32(0); j < n / pos; j++ {
+			for j := uint32(0); j < n/pos; j++ {
 				// Write 10 for every one.
 				for k := 0; k < 10; k++ {
 					// Tally ho!
@@ -87,7 +88,7 @@ func FromArabic(n uint32) (string, error) {
 			if digit >= 5 {
 				reversedOutput.WriteString(syms[V])
 			}
-			for j := uint32(0); j < digit % 5; j++ {
+			for j := uint32(0); j < digit%5; j++ {
 				reversedOutput.WriteString(syms[I])
 			}
 		}
@@ -106,7 +107,6 @@ func reverseByRune(s string) string {
 	}
 	return string(temp)
 }
-
 
 // ToArabic converts a roman string to an arabic integer.
 func ToArabic(r string) (uint32, error) {
@@ -144,19 +144,19 @@ func ToArabic(r string) (uint32, error) {
 // FromArabicString is a convenience method that parses the arabic
 // numeral from a string and then calls FromArabic.
 func FromArabicString(n string) (string, error) {
-	if val, err := strconv.ParseUint(n, 10, 32); err != nil {
+	val, err := strconv.ParseUint(n, 10, 32)
+	if err != nil {
 		return "", err
-	} else {
-		return FromArabic(uint32(val))
 	}
+	return FromArabic(uint32(val))
 }
 
 // ToArabicString is a convenience method that calls toArabic, and
 // then converts the return result into a string
 func ToArabicString(r string) (string, error) {
-	if val, err := ToArabic(r); err != nil {
+	val, err := ToArabic(r)
+	if err != nil {
 		return "", err
-	} else {
-		return strconv.FormatUint(uint64(val), 10), nil
 	}
+	return strconv.FormatUint(uint64(val), 10), nil
 }
