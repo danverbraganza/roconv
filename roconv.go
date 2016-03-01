@@ -9,7 +9,7 @@ import (
 	"os"
 	"text/scanner"
 
-	"github.com/danverbraganza/go-roconv/romans"
+	"github.com/danverbraganza/roconv/romans"
 )
 
 var acceptedModes = map[string]func(string) (string, error){
